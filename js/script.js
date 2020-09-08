@@ -12,3 +12,15 @@ jobRole.addEventListener('change', (event) => {
     otherTitle.className = 'is-hidden'
   }
 })
+
+const shirtColor = document.getElementById("color");
+const colorOptions = shirtColor.children;
+for (let i = 0; i < colorOptions.length; i++) {
+  colorOptions[i].className = "is-hidden";
+}
+
+const placeholderOption = document.createElement("option");
+shirtColor.appendChild(placeholderOption)
+placeholderOption.text = "Please select a T-shit theme.";
+placeholderOption.id = "placeholderOption";
+placeholderOption.selected = true;
