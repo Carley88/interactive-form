@@ -65,13 +65,15 @@ design.addEventListener('change', (event) => {
   }
 });
 
-const activities = document.querySelector(".activities")
+const activities = document.querySelector(".activities");
 const activityList = document.querySelectorAll(".activities input");
+let totalPrice = 0;
 
 activities.addEventListener('change', (event) => {
+  const checkedActivity = event.target;
+  activityPrice = parseInt(checkedActivity.dataset.cost);
   if (event.target.checked) {
-    const checkedActivity = event.target;
-    activityPrice = parseInt(checkedActivity.dataset.cost);
+    totalPrice += activityPrice;
 
     for (let i = 0; i < activityList.length; i++) {
       if (checkedActivity.dataset.dayAndTime === activityList[i].dataset.dayAndTime && checkedActivity.name != activityList[i].name) {
@@ -79,10 +81,12 @@ activities.addEventListener('change', (event) => {
         activityList[i].parentNode.style.color = "grey";
       }
     }
-  } else {
+  } else if (event.target.checked === false) {
+    totalPrice -= activityPrice;
     for (let i = 0; i < activityList.length; i++) {
       activityList[i].disabled = false;
       activityList[i].parentNode.style.color = "#000";
     }
   }
+  console.log(totalPrice);
 });
