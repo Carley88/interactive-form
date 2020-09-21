@@ -64,3 +64,25 @@ design.addEventListener('change', (event) => {
     }
   }
 });
+
+const activities = document.querySelector(".activities")
+const activityList = document.querySelectorAll(".activities input");
+
+activities.addEventListener('change', (event) => {
+  if (event.target.checked) {
+    const checkedActivity = event.target;
+    activityPrice = parseInt(checkedActivity.dataset.cost);
+
+    for (let i = 0; i < activityList.length; i++) {
+      if (checkedActivity.dataset.dayAndTime === activityList[i].dataset.dayAndTime && checkedActivity.name != activityList[i].name) {
+        activityList[i].disabled = true;
+        activityList[i].parentNode.style.color = "grey";
+      }
+    }
+  } else {
+    for (let i = 0; i < activityList.length; i++) {
+      activityList[i].disabled = false;
+      activityList[i].parentNode.style.color = "#000";
+    }
+  }
+});
