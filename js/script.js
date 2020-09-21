@@ -64,3 +64,34 @@ design.addEventListener('change', (event) => {
     }
   }
 });
+
+const activities = document.querySelector(".activities");
+const activityList = document.querySelectorAll(".activities input");
+let totalPrice = 0;
+totalPriceElement = document.createElement('h3');
+activities.appendChild(totalPriceElement);
+totalPriceElement.innerHTML = `$${totalPrice}`;
+
+
+activities.addEventListener('change', (event) => {
+  const checkedActivity = event.target;
+  activityPrice = parseInt(checkedActivity.dataset.cost);
+  if (event.target.checked) {
+    totalPrice += activityPrice;
+    totalPriceElement.innerHTML = `$${totalPrice}`;
+
+    for (let i = 0; i < activityList.length; i++) {
+      if (checkedActivity.dataset.dayAndTime === activityList[i].dataset.dayAndTime && checkedActivity.name != activityList[i].name) {
+        activityList[i].disabled = true;
+        activityList[i].parentNode.style.color = "grey";
+      }
+    }
+  } else if (event.target.checked === false) {
+    totalPrice -= activityPrice;
+    totalPriceElement.innerHTML = `$${totalPrice}`;
+    for (let i = 0; i < activityList.length; i++) {
+      activityList[i].disabled = false;
+      activityList[i].parentNode.style.color = "#000";
+    }
+  }
+});
