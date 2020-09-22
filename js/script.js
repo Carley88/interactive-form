@@ -95,3 +95,30 @@ activities.addEventListener('change', (event) => {
     }
   }
 });
+
+const payment = document.getElementById("payment");
+
+const creditCard = document.getElementById("credit-card");
+creditCard.style.display = ""
+const payPal = document.getElementById("paypal");
+payPal.style.display = "";
+const bitcoin = document.getElementById("bitcoin");
+bitcoin.style.display = "none";
+
+payment.addEventListener('click', (event) => {
+  payment.remove(0)
+  const paymentType = event.target.value;
+  if (paymentType === "credit card") {
+    creditCard.style.display = "";
+    payPal.style.display = "none";
+    bitcoin.style.display = "none";
+  } else if (paymentType === "paypal") {
+    payPal.style.display = "";
+    creditCard.style.display = "none";
+    bitcoin.style.display = "none";
+  } else if (paymentType === "bitcoin") {
+    bitcoin.style.display = "";
+    creditCard.style.display = "none";
+    payPal.style.display = "none";
+  }
+});
