@@ -148,10 +148,19 @@ function validateActivities() {
   }
 }
 
+function validateCardDetails() {
+  const cardNumber = document.getElementById("cc-num");
+  const cardNumberTest = /^\d{13,16}$/.test(cardNumber.value);
+  const zip = document.getElementById("zip");
+  const zipTest = /^\d{5}$/.test(zip.value);
+  const cvv = document.getElementById("cvv");
+  const cvvTest = /^\d{3}$/.test(cvv.value);
+}
+
 submitButton = document.getElementsByTagName("button")[0];
 
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
-  validateActivities();
+  validateCardDetails();
 
 })
