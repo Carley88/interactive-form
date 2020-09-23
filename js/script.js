@@ -131,3 +131,11 @@ function validateName() {
     return(false);
   }
 }
+
+submitButton = document.getElementsByTagName("button")[0];
+
+submitButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  validateName();
+
+})
