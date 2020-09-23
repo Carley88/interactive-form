@@ -132,10 +132,15 @@ function validateName() {
   }
 }
 
+function validateEmail() {
+  const email = document.getElementById("mail");
+  console.log(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value));
+}
+
 submitButton = document.getElementsByTagName("button")[0];
 
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
-  validateName();
+  validateEmail();
 
 })
