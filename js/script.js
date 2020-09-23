@@ -134,7 +134,10 @@ function validateName() {
 
 function validateEmail() {
   const email = document.getElementById("mail");
-  console.log(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value));
+  if(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email) === false) {
+    console.log("Please enter a valid email address");
+    return(false);
+  }
 }
 
 submitButton = document.getElementsByTagName("button")[0];
