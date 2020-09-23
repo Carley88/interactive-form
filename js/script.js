@@ -151,10 +151,22 @@ function validateActivities() {
 function validateCardDetails() {
   const cardNumber = document.getElementById("cc-num");
   const cardNumberTest = /^\d{13,16}$/.test(cardNumber.value);
+  if (cardNumberTest === false) {
+    console.log("Card number is incomplete, please enter a valid card number");
+  }
   const zip = document.getElementById("zip");
   const zipTest = /^\d{5}$/.test(zip.value);
+  if (zipTest === false) {
+    console.log("Zip is incomplete, please enter a valid zip");
+  }
   const cvv = document.getElementById("cvv");
   const cvvTest = /^\d{3}$/.test(cvv.value);
+  if (cvvTest === false) {
+    console.log("CVV number incomplete, please enter a valid CVV");
+  }
+  if (cardNumberTest === false || zipTest === false || cvvTest === false) {
+    return(false);
+  }
 }
 
 submitButton = document.getElementsByTagName("button")[0];
