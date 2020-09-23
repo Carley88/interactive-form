@@ -122,3 +122,12 @@ payment.addEventListener('click', (event) => {
     payPal.style.display = "none";
   }
 });
+
+function validateName() {
+  if(name.value) {
+    return(true);
+  } else {
+    console.log("Please enter a name");
+    return(false);
+  }
+}
