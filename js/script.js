@@ -122,3 +122,60 @@ payment.addEventListener('click', (event) => {
     payPal.style.display = "none";
   }
 });
+
+function validateName() {
+  if(name.value) {
+    return(true);
+  } else {
+    console.log("Please enter a name");
+    return(false);
+  }
+}
+
+function validateEmail() {
+  const email = document.getElementById("mail");
+  if(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email) === false) {
+    console.log("Please enter a valid email address");
+    return(false);
+  }
+}
+
+function validateActivities() {
+  const isChecked = document.querySelectorAll("[type=checkbox]:checked");
+  if (isChecked.length === 0) {
+    console.log("Please select at least one activity");
+    return(false);
+  }
+}
+
+function validateCardDetails() {
+  const cardNumber = document.getElementById("cc-num");
+  const cardNumberTest = /^\d{13,16}$/.test(cardNumber.value);
+  if (creditCard.style.display === "") {
+    if (cardNumberTest === false) {
+      console.log("Card number is incomplete, please enter a valid card number");
+    }
+    const zip = document.getElementById("zip");
+    const zipTest = /^\d{5}$/.test(zip.value);
+    if (zipTest === false) {
+      console.log("Zip is incomplete, please enter a valid zip");
+    }
+    const cvv = document.getElementById("cvv");
+    const cvvTest = /^\d{3}$/.test(cvv.value);
+    if (cvvTest === false) {
+      console.log("CVV number incomplete, please enter a valid CVV");
+    }
+    if (cardNumberTest === false || zipTest === false || cvvTest === false) {
+      return(false);
+    }
+  } else {
+    return ("Card not selected")
+  }
+}
+
+submitButton = document.getElementsByTagName("button")[0];
+
+submitButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  validateCardDetails();
+})
