@@ -140,10 +140,18 @@ function validateEmail() {
   }
 }
 
+function validateActivities() {
+  const isChecked = document.querySelectorAll("[type=checkbox]:checked");
+  if (isChecked.length === 0) {
+    console.log("Please select at least one activity");
+    return(false);
+  }
+}
+
 submitButton = document.getElementsByTagName("button")[0];
 
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
-  validateEmail();
+  validateActivities();
 
 })
