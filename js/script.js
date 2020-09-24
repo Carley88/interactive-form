@@ -105,8 +105,9 @@ payPal.style.display = "";
 const bitcoin = document.getElementById("bitcoin");
 bitcoin.style.display = "none";
 
+document.querySelector("[value='select method']").style.display = "none";
+
 payment.addEventListener('click', (event) => {
-  payment.remove(0)
   const paymentType = event.target.value;
   if (paymentType === "credit card") {
     creditCard.style.display = "";
