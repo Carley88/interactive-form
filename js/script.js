@@ -125,9 +125,10 @@ payment.addEventListener('click', (event) => {
 });
 
 function createErrorElement () {
-  const nameError = document.createElement("span");
-  nameError.className = "validation-message";
-  nameError.style.display = "";
+  const errorMessage = document.createElement("span");
+  errorMessage.className = "validation-message";
+  errorMessage.style.display = "";
+  return(errorMessage);
 }
 
 const nameError = document.createElement("span");
