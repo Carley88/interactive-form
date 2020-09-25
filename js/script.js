@@ -131,44 +131,32 @@ function createErrorElement () {
   return(errorMessage);
 }
 
-const nameError = document.createElement("span");
-nameError.className = "validation-message";
+const nameError = createErrorElement();
 nameError.innerHTML = "*Please enter your name";
-nameError.style.display = "";
 name.previousElementSibling.append(nameError);
 
 const email = document.getElementById("mail");
-const emailError = document.createElement("span");
-emailError.className = "validation-message";
+const emailError = createErrorElement();
 emailError.innerHTML = "*Please enter a valid email";
-emailError.style.display = "";
 email.previousElementSibling.append(emailError);
 
-const activitiesError = document.createElement("span");
-activitiesError.className = "validation-message";
+const activitiesError = createErrorElement();
 activitiesError.innerHTML = "*Please select at least one activity";
-activitiesError.style.display = "";
 activities.appendChild(activitiesError);
 
 const cardNumber = document.getElementById("cc-num");
-const cardError = document.createElement("span");
-cardError.className = "validation-message";
+const cardError = createErrorElement();
 cardError.innerHTML = "*Invalid card number";
-cardError.style.display = "";
 cardNumber.parentNode.appendChild(cardError);
 
 const zip = document.getElementById("zip");
-const zipError = document.createElement("span");
-zipError.className = "validation-message";
+const zipError = createErrorElement();
 zipError.innerHTML = "*Invalid zip";
-zipError.style.display = "";
 zip.parentNode.appendChild(zipError);
 
 const cvvNumber = document.getElementById("cvv");
-const cvvError = document.createElement("span");
-cvvError.className = "validation-message";
+const cvvError = createErrorElement();
 cvvError.innerHTML = "*Invalid CVV";
-cvvError.style.display = "";
 cvv.parentNode.appendChild(cvvError);
 
 function validateName() {
