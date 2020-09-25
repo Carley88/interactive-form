@@ -180,6 +180,12 @@ option {
   clear: both;
 }
 
+.validation-message {
+  font-weight: bold;
+  color: red;
+  display:inherit;
+
+}
 /* =================================
   Media Queries
 ==================================== */
