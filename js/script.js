@@ -168,10 +168,7 @@ function validateName() {
 }
 
 function validateEmail() {
-  if(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email) === false) {
-    console.log("Please enter a valid email address");
-    return(false);
-  }
+    return(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value));
 }
 
 function validateActivities() {
@@ -208,5 +205,5 @@ submitButton = document.getElementsByTagName("button")[0];
 
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
-  validateCardDetails();
+  console.log(validateEmail());
 })
