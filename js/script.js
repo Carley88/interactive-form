@@ -178,31 +178,21 @@ function validateActivities() {
   }
 }
 
-function validateCardDetails() {
-  const cardNumberTest = /^\d{13,16}$/.test(cardNumber.value);
-  if (creditCard.style.display === "") {
-    if (cardNumberTest === false) {
-      console.log("Card number is incomplete, please enter a valid card number");
-    }
-    const zipTest = /^\d{5}$/.test(zip.value);
-    if (zipTest === false) {
-      console.log("Zip is incomplete, please enter a valid zip");
-    }
-    const cvvTest = /^\d{3}$/.test(cvv.value);
-    if (cvvTest === false) {
-      console.log("CVV number incomplete, please enter a valid CVV");
-    }
-    if (cardNumberTest === false || zipTest === false || cvvTest === false) {
-      return(false);
-    }
-  } else {
-    return ("Card not selected")
-  }
+function validateCardNumber() {
+  return(/^\d{13,16}$/.test(cardNumber.value));
+}
+
+function validateZip() {
+  return(/^\d{5}$/.test(zip.value));
+}
+
+function validateCvv() {
+  return(/^\d{3}$/.test(cvv.value));
 }
 
 submitButton = document.getElementsByTagName("button")[0];
 
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
-  validateEmail();
+  console.log(validateCvv());
 })
