@@ -124,59 +124,144 @@ payment.addEventListener('click', (event) => {
   }
 });
 
+function createErrorElement () {
+  const errorMessage = document.createElement("span");
+  errorMessage.className = "validation-message";
+  errorMessage.style.display = "none";
+  return(errorMessage);
+}
+
+
+const nameError = createErrorElement();
+nameError.innerHTML = "*Please enter your name";
+name.previousElementSibling.append(nameError);
+
 function validateName() {
   if(name.value) {
+    nameError.style.display = "none"
     return(true);
   } else {
-    console.log("Please enter a name");
+    nameError.style.display = ""
     return(false);
   }
 }
 
+name.addEventListener("input", (event) => {
+  validateName();
+});
+
+const email = document.getElementById("mail");
+const emailError = createErrorElement();
+emailError.innerHTML = "*Please enter a valid email";
+email.previousElementSibling.append(emailError);
+
 function validateEmail() {
-  const email = document.getElementById("mail");
-  if(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email) === false) {
-    console.log("Please enter a valid email address");
-    return(false);
+  if(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value) === true) {
+    emailError.style.display = "none"
+    return true;
+  } else {
+    emailError.style.display = ""
+    return false;
   }
 }
+
+email.addEventListener("input", (event) => {
+  validateEmail();
+});
+
+const activitiesError = createErrorElement();
+activitiesError.innerHTML = "*Please select at least one activity";
+activities.appendChild(activitiesError);
 
 function validateActivities() {
   const isChecked = document.querySelectorAll("[type=checkbox]:checked");
   if (isChecked.length === 0) {
-    console.log("Please select at least one activity");
+    activitiesError.style.display = "";
     return(false);
+  } else {
+    activitiesError.style.display = "none";
   }
 }
 
-function validateCardDetails() {
-  const cardNumber = document.getElementById("cc-num");
-  const cardNumberTest = /^\d{13,16}$/.test(cardNumber.value);
-  if (creditCard.style.display === "") {
-    if (cardNumberTest === false) {
-      console.log("Card number is incomplete, please enter a valid card number");
-    }
-    const zip = document.getElementById("zip");
-    const zipTest = /^\d{5}$/.test(zip.value);
-    if (zipTest === false) {
-      console.log("Zip is incomplete, please enter a valid zip");
-    }
-    const cvv = document.getElementById("cvv");
-    const cvvTest = /^\d{3}$/.test(cvv.value);
-    if (cvvTest === false) {
-      console.log("CVV number incomplete, please enter a valid CVV");
-    }
-    if (cardNumberTest === false || zipTest === false || cvvTest === false) {
-      return(false);
-    }
+activities.addEventListener("click", (event) => {
+  validateActivities();
+})
+
+const cardNumber = document.getElementById("cc-num");
+const cardError = createErrorElement();
+cardError.innerHTML = "*Invalid card number";
+cardNumber.parentNode.appendChild(cardError);
+
+function validateCardNumber() {
+  if (/^\d{13,16}$/.test(cardNumber.value) === true) {
+    cardError.style.display = "none";
+    return true;
   } else {
-    return ("Card not selected")
+    cardError.style.display = "";
+    return false;
   }
 }
+
+cardNumber.addEventListener("input", () => {
+  validateCardNumber();
+});
+
+const zip = document.getElementById("zip");
+const zipError = createErrorElement();
+zipError.innerHTML = "*Invalid zip";
+zip.parentNode.appendChild(zipError);
+
+function validateZip() {
+  if (/^\d{5}$/.test(zip.value) === true) {
+    zipError.style.display = "none";
+    return true;
+  } else {
+    zipError.style.display = "";
+  }
+}
+
+zip.addEventListener("input", () => {
+  validateZip();
+})
+
+const cvvNumber = document.getElementById("cvv");
+const cvvError = createErrorElement();
+cvvError.innerHTML = "*Invalid CVV";
+cvv.parentNode.appendChild(cvvError);
+
+function validateCvv() {
+  if (/^\d{3}$/.test(cvv.value) === true){
+    cvvError.style.display = "none";
+    return true;
+  } else {
+    cvvError.style.display = "";
+    return false;
+  }
+}
+
+cvvNumber.addEventListener("input", () => {
+  validateCvv();
+})
+
+function masterValidator() {
+  if (validateName() === false || validateEmail() === false || validateActivities() === false || validateCardNumber() === false || validateZip() === false || validateCvv() === false) {
+    validateName();
+    validateEmail();
+    validateActivities();
+    validateCardNumber();
+    validateZip();
+    validateCvv();
+    return false;
+  } else {
+    return true;
+  }
+}
+
 
 submitButton = document.getElementsByTagName("button")[0];
 
 submitButton.addEventListener("click", (event) => {
-  event.preventDefault();
-  validateCardDetails();
-})
+  if(masterValidator() === false) {
+    event.preventDefault();
+  }
+});
