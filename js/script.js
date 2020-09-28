@@ -131,11 +131,6 @@ function createErrorElement () {
   return(errorMessage);
 }
 
-const cardNumber = document.getElementById("cc-num");
-const cardError = createErrorElement();
-cardError.innerHTML = "*Invalid card number";
-cardNumber.parentNode.appendChild(cardError);
-
 const zip = document.getElementById("zip");
 const zipError = createErrorElement();
 zipError.innerHTML = "*Invalid zip";
@@ -201,9 +196,24 @@ activities.addEventListener("click", (event) => {
   validateActivities();
 })
 
+const cardNumber = document.getElementById("cc-num");
+const cardError = createErrorElement();
+cardError.innerHTML = "*Invalid card number";
+cardNumber.parentNode.appendChild(cardError);
+
 function validateCardNumber() {
-  return(/^\d{13,16}$/.test(cardNumber.value));
+  if (/^\d{13,16}$/.test(cardNumber.value) === true) {
+    cardError.style.display = "none";
+    return true;
+  } else {
+    cardError.style.display = "";
+    return false;
+  }
 }
+
+cardNumber.addEventListener("input", () => {
+  validateCardNumber();
+});
 
 function validateZip() {
   return(/^\d{5}$/.test(zip.value));
