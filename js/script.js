@@ -243,9 +243,18 @@ cvvNumber.addEventListener("input", () => {
   validateCvv();
 })
 
+function masterValidator() {
+  if (validateName() === false || validateEmail() === false || validateActivities() === false || validateCardNumber() === false || validateZip() === false || validateCvv() === false) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+
 submitButton = document.getElementsByTagName("button")[0];
 
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
-  console.log(validateCvv());
+  console.log(masterValidator());
 })
