@@ -245,6 +245,12 @@ cvvNumber.addEventListener("input", () => {
 
 function masterValidator() {
   if (validateName() === false || validateEmail() === false || validateActivities() === false || validateCardNumber() === false || validateZip() === false || validateCvv() === false) {
+    validateName();
+    validateEmail();
+    validateActivities();
+    validateCardNumber();
+    validateZip();
+    validateCvv();
     return false;
   } else {
     return true;
@@ -255,6 +261,7 @@ function masterValidator() {
 submitButton = document.getElementsByTagName("button")[0];
 
 submitButton.addEventListener("click", (event) => {
-  event.preventDefault();
-  console.log(masterValidator());
-})
+  if(masterValidator() === false) {
+    event.preventDefault();
+  }
+});
