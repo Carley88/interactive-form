@@ -132,11 +132,6 @@ function createErrorElement () {
 }
 
 
-const cvvNumber = document.getElementById("cvv");
-const cvvError = createErrorElement();
-cvvError.innerHTML = "*Invalid CVV";
-cvv.parentNode.appendChild(cvvError);
-
 const nameError = createErrorElement();
 nameError.innerHTML = "*Please enter your name";
 name.previousElementSibling.append(nameError);
@@ -229,9 +224,24 @@ zip.addEventListener("input", () => {
   validateZip();
 })
 
+const cvvNumber = document.getElementById("cvv");
+const cvvError = createErrorElement();
+cvvError.innerHTML = "*Invalid CVV";
+cvv.parentNode.appendChild(cvvError);
+
 function validateCvv() {
-  return(/^\d{3}$/.test(cvv.value));
+  if (/^\d{3}$/.test(cvv.value) === true){
+    cvvError.style.display = "none";
+    return true;
+  } else {
+    cvvError.style.display = "";
+    return false;
+  }
 }
+
+cvvNumber.addEventListener("input", () => {
+  validateCvv();
+})
 
 submitButton = document.getElementsByTagName("button")[0];
 
