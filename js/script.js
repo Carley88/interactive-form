@@ -26,8 +26,11 @@ placeholderOption.id = "placeholderOption";
 placeholderOption.selected = true;
 
 const design = document.getElementById("design");
+const shirtDiv = document.getElementById("shirt-colors");
+shirtDiv.style.display = "none";
 
 design.addEventListener('change', (event) => {
+  shirtDiv.style.display = "";
   if(event.target.value === "js puns") {
     for (let i = 0; i < colorOptions.length; i++) {
       switch (colorOptions[i].value) {
