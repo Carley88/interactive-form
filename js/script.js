@@ -127,18 +127,9 @@ payment.addEventListener('click', (event) => {
 function createErrorElement () {
   const errorMessage = document.createElement("span");
   errorMessage.className = "validation-message";
-  errorMessage.style.display = "";
+  errorMessage.style.display = "none";
   return(errorMessage);
 }
-
-const nameError = createErrorElement();
-nameError.innerHTML = "*Please enter your name";
-name.previousElementSibling.append(nameError);
-
-const email = document.getElementById("mail");
-const emailError = createErrorElement();
-emailError.innerHTML = "*Please enter a valid email";
-email.previousElementSibling.append(emailError);
 
 const activitiesError = createErrorElement();
 activitiesError.innerHTML = "*Please select at least one activity";
@@ -159,17 +150,42 @@ const cvvError = createErrorElement();
 cvvError.innerHTML = "*Invalid CVV";
 cvv.parentNode.appendChild(cvvError);
 
+const nameError = createErrorElement();
+nameError.innerHTML = "*Please enter your name";
+name.previousElementSibling.append(nameError);
+
 function validateName() {
   if(name.value) {
+    nameError.style.display = "none"
     return(true);
   } else {
+    nameError.style.display = ""
     return(false);
   }
 }
 
+name.addEventListener("input", (event) => {
+  validateName();
+});
+
+const email = document.getElementById("mail");
+const emailError = createErrorElement();
+emailError.innerHTML = "*Please enter a valid email";
+email.previousElementSibling.append(emailError);
+
 function validateEmail() {
-    return(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value));
+  if(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value) === true) {
+    emailError.style.display = "none"
+    return true;
+  } else {
+    emailError.style.display = ""
+    return false;
+  }
 }
+
+email.addEventListener("input", (event) => {
+  validateEmail();
+});
 
 function validateActivities() {
   const isChecked = document.querySelectorAll("[type=checkbox]:checked");
