@@ -131,10 +131,6 @@ function createErrorElement () {
   return(errorMessage);
 }
 
-const activitiesError = createErrorElement();
-activitiesError.innerHTML = "*Please select at least one activity";
-activities.appendChild(activitiesError);
-
 const cardNumber = document.getElementById("cc-num");
 const cardError = createErrorElement();
 cardError.innerHTML = "*Invalid card number";
@@ -187,12 +183,23 @@ email.addEventListener("input", (event) => {
   validateEmail();
 });
 
+const activitiesError = createErrorElement();
+activitiesError.innerHTML = "*Please select at least one activity";
+activities.appendChild(activitiesError);
+
 function validateActivities() {
   const isChecked = document.querySelectorAll("[type=checkbox]:checked");
   if (isChecked.length === 0) {
+    activitiesError.style.display = "";
     return(false);
+  } else {
+    activitiesError.style.display = "none";
   }
 }
+
+activities.addEventListener("click", (event) => {
+  validateActivities();
+})
 
 function validateCardNumber() {
   return(/^\d{13,16}$/.test(cardNumber.value));
