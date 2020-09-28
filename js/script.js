@@ -131,10 +131,6 @@ function createErrorElement () {
   return(errorMessage);
 }
 
-const zip = document.getElementById("zip");
-const zipError = createErrorElement();
-zipError.innerHTML = "*Invalid zip";
-zip.parentNode.appendChild(zipError);
 
 const cvvNumber = document.getElementById("cvv");
 const cvvError = createErrorElement();
@@ -215,9 +211,23 @@ cardNumber.addEventListener("input", () => {
   validateCardNumber();
 });
 
+const zip = document.getElementById("zip");
+const zipError = createErrorElement();
+zipError.innerHTML = "*Invalid zip";
+zip.parentNode.appendChild(zipError);
+
 function validateZip() {
-  return(/^\d{5}$/.test(zip.value));
+  if (/^\d{5}$/.test(zip.value) === true) {
+    zipError.style.display = "none";
+    return true;
+  } else {
+    zipError.style.display = "";
+  }
 }
+
+zip.addEventListener("input", () => {
+  validateZip();
+})
 
 function validateCvv() {
   return(/^\d{3}$/.test(cvv.value));
