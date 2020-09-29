@@ -9,10 +9,10 @@ const shirtDiv = document.getElementById("shirt-colors");
 const activities = document.querySelector(".activities");
 const activityList = document.querySelectorAll(".activities input");
 const totalPriceElement = document.createElement('h3');
-const payment = document.getElementById("payment");
 const creditCard = document.getElementById("credit-card");
 const payPal = document.getElementById("paypal");
 const bitcoin = document.getElementById("bitcoin");
+const payment = document.getElementById("payment");
 const nameError = createErrorElement();
 const email = document.getElementById("mail");
 const emailError = createErrorElement();
@@ -35,9 +35,9 @@ otherTitle.className = "is-hidden";
 
 jobRole.addEventListener('change', (event) => {
   if(event.target.value === "other") {
-    otherTitle.className = ""
+    otherTitle.className = "";
   } else {
-    otherTitle.className = 'is-hidden'
+    otherTitle.className = 'is-hidden';
   }
 })
 
@@ -104,7 +104,6 @@ activities.appendChild(totalPriceElement);
 totalPriceElement.innerHTML = `Total: $${totalPrice}`;
 
 activities.addEventListener('change', (event) => {
-  const priceHTML = `Total: $${totalPrice}`
   const checkedActivity = event.target;
   activityPrice = parseInt(checkedActivity.dataset.cost);
   if (event.target.checked) {
@@ -132,7 +131,7 @@ Initially the credit card input is visable.
 This will change if the user selects a different payment method.
 The select payment method isn't available for selection when the user drops down.
 **/
-creditCard.style.display = ""
+creditCard.style.display = "";
 payPal.style.display = "";
 bitcoin.style.display = "none";
 
@@ -174,11 +173,11 @@ name.previousElementSibling.append(nameError);
 
 function validateName() {
   if(name.value) {
-    nameError.style.display = "none"
-    return(true);
+    nameError.style.display = "none";
+    return true;
   } else {
-    nameError.style.display = ""
-    return(false);
+    nameError.style.display = "";
+    return false;
   }
 }
 
@@ -236,7 +235,7 @@ function validateActivities() {
   const isChecked = document.querySelectorAll("[type=checkbox]:checked");
   if (isChecked.length === 0) {
     activitiesError.style.display = "";
-    return(false);
+    return false;
   } else {
     activitiesError.style.display = "none";
   }
