@@ -136,7 +136,6 @@ function createErrorElement () {
 
 
 const nameError = createErrorElement();
-nameError.innerHTML = "*Please enter your name";
 name.previousElementSibling.append(nameError);
 
 function validateName() {
@@ -149,22 +148,37 @@ function validateName() {
   }
 }
 
+function validateName() {
+  if (name.value.length === 0) {
+    nameError.innerHTML = "*Please enter your name";
+    nameError.style.display = "";
+    return false;
+  } else if (/^[a-z]+$/.test === false) {
+    nameError.innerHTML = "*Please enter your name";
+    nameError.style.display = "";
+  }
+}
+
 name.addEventListener("input", (event) => {
   validateName();
 });
 
 const email = document.getElementById("mail");
 const emailError = createErrorElement();
-emailError.innerHTML = "*Please enter a valid email";
 email.previousElementSibling.append(emailError);
 
 function validateEmail() {
-  if(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value) === true) {
-    emailError.style.display = "none"
-    return true;
-  } else {
-    emailError.style.display = ""
+  if(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value) === false && email.value.length > 0) {
+    emailError.innerHTML = "*Please enter a valid email address";
+    emailError.style.display = "";
     return false;
+  } else if (email.value.length === 0 && /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value) === false) {
+    emailError.innerHTML = "*Please enter your email address";
+    emailError.style.display = "";
+    return false;
+  } else if (email.value && /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value) === true) {
+    emailError.style.display = "none";
+    return true;
   }
 }
 
