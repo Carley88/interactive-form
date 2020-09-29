@@ -40,8 +40,8 @@ a {
 
 form {
 	padding: .875em 1.875em 1.875em;
-	background: #9BBEEF;
-	border: 2px solid rgba(8, 63, 87, 0.6);
+	background: skyBlue;
+	border: 3px solid blue;
 	border-radius: 3px;
 }
 
