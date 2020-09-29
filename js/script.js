@@ -137,7 +137,7 @@ bitcoin.style.display = "none";
 
 document.querySelector("[value='select method']").style.display = "none";
 
-payment.addEventListener('click', (event) => {
+payment.addEventListener('change', (event) => {
   const paymentType = event.target.value;
   if (paymentType === "credit card") {
     creditCard.style.display = "";
