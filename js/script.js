@@ -9,7 +9,6 @@ const shirtDiv = document.getElementById("shirt-colors");
 const activities = document.querySelector(".activities");
 const activityList = document.querySelectorAll(".activities input");
 const totalPriceElement = document.createElement('h3');
-const priceHTML = `Total: $${totalPrice}`
 const payment = document.getElementById("payment");
 const creditCard = document.getElementById("credit-card");
 const payPal = document.getElementById("paypal");
@@ -102,15 +101,15 @@ The total cost of the selected events is added up & displayed at the bottom of t
 **/
 let totalPrice = 0;
 activities.appendChild(totalPriceElement);
-totalPriceElement.innerHTML = `$${totalPrice}`;
-
+totalPriceElement.innerHTML = `Total: $${totalPrice}`;
 
 activities.addEventListener('change', (event) => {
+  const priceHTML = `Total: $${totalPrice}`
   const checkedActivity = event.target;
   activityPrice = parseInt(checkedActivity.dataset.cost);
   if (event.target.checked) {
     totalPrice += activityPrice;
-    totalPriceElement.innerHTML = `$${totalPrice}`;
+    totalPriceElement.innerHTML = `Total: $${totalPrice}`;
 
     for (let i = 0; i < activityList.length; i++) {
       if (checkedActivity.dataset.dayAndTime === activityList[i].dataset.dayAndTime && checkedActivity.name != activityList[i].name) {
@@ -120,7 +119,7 @@ activities.addEventListener('change', (event) => {
     }
   } else if (event.target.checked === false) {
     totalPrice -= activityPrice;
-    totalPriceElement.innerHTML = `$${totalPrice}`;
+    totalPriceElement.innerHTML = `Total: $${totalPrice}`;
     for (let i = 0; i < activityList.length; i++) {
       activityList[i].disabled = false;
       activityList[i].parentNode.style.color = "#000";
