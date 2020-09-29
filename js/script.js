@@ -1,10 +1,39 @@
 const name = document.getElementById("name");
+const otherTitle = document.getElementById("other-title");
+const jobRole = document.getElementById("title");
+const shirtColor = document.getElementById("color");
+const colorOptions = shirtColor.children;
+const placeholderOption = document.createElement("option");
+const design = document.getElementById("design");
+const shirtDiv = document.getElementById("shirt-colors");
+const activities = document.querySelector(".activities");
+const activityList = document.querySelectorAll(".activities input");
+const totalPriceElement = document.createElement('h3');
+const priceHTML = `Total: $${totalPrice}`
+const payment = document.getElementById("payment");
+const creditCard = document.getElementById("credit-card");
+const payPal = document.getElementById("paypal");
+const bitcoin = document.getElementById("bitcoin");
+const nameError = createErrorElement();
+const email = document.getElementById("mail");
+const emailError = createErrorElement();
+const activitiesError = createErrorElement();
+const cardNumber = document.getElementById("cc-num");
+const cardError = createErrorElement();
+const zip = document.getElementById("zip");
+const zipError = createErrorElement();
+const cvvNumber = document.getElementById("cvv");
+const cvvError = createErrorElement();
+const submitButton = document.getElementsByTagName("button")[0];
+
+//When the user lands on the page the cursor will appear in the name field.
 name.focus();
 
-const otherTitle = document.getElementById("other-title");
+/**
+Hides the other job role input box until the user selects other in the drop down box.
+**/
 otherTitle.className = "is-hidden";
 
-const jobRole = document.getElementById("title");
 jobRole.addEventListener('change', (event) => {
   if(event.target.value === "other") {
     otherTitle.className = ""
@@ -13,20 +42,19 @@ jobRole.addEventListener('change', (event) => {
   }
 })
 
-const shirtColor = document.getElementById("color");
-const colorOptions = shirtColor.children;
 for (let i = 0; i < colorOptions.length; i++) {
   colorOptions[i].className = "is-hidden";
 }
 
-const placeholderOption = document.createElement("option");
+/**
+Hides the t-shirt color options until a design is selected.
+Once a design is selected only colors of the selected themes will be available to select.
+**/
 shirtColor.appendChild(placeholderOption);
 placeholderOption.text = "Please select a T-shirt theme.";
 placeholderOption.id = "placeholderOption";
 placeholderOption.selected = true;
 
-const design = document.getElementById("design");
-const shirtDiv = document.getElementById("shirt-colors");
 shirtDiv.style.display = "none";
 
 design.addEventListener('change', (event) => {
@@ -68,10 +96,11 @@ design.addEventListener('change', (event) => {
   }
 });
 
-const activities = document.querySelector(".activities");
-const activityList = document.querySelectorAll(".activities input");
+/**
+When a user selects an event any events which run at the same time will be greyed out and unavailable for selection.
+The total cost of the selected events is added up & displayed at the bottom of the activities section.
+**/
 let totalPrice = 0;
-totalPriceElement = document.createElement('h3');
 activities.appendChild(totalPriceElement);
 totalPriceElement.innerHTML = `$${totalPrice}`;
 
@@ -99,13 +128,13 @@ activities.addEventListener('change', (event) => {
   }
 });
 
-const payment = document.getElementById("payment");
-
-const creditCard = document.getElementById("credit-card");
+/**
+Initially the credit card input is visable.
+This will change if the user selects a different payment method.
+The select payment method isn't available for selection when the user drops down.
+**/
 creditCard.style.display = ""
-const payPal = document.getElementById("paypal");
 payPal.style.display = "";
-const bitcoin = document.getElementById("bitcoin");
 bitcoin.style.display = "none";
 
 document.querySelector("[value='select method']").style.display = "none";
@@ -127,6 +156,9 @@ payment.addEventListener('click', (event) => {
   }
 });
 
+/**
+Function will create a new span element which will hold the error messages for each validation point.
+**/
 function createErrorElement () {
   const errorMessage = document.createElement("span");
   errorMessage.className = "validation-message";
@@ -134,8 +166,11 @@ function createErrorElement () {
   return(errorMessage);
 }
 
-
-const nameError = createErrorElement();
+/**
+Checks if the user has entered a name.
+If the user removes the name after typing or leaves it blank upon submission an error message is displayed.
+If the name field holds no value this function will return false.
+**/
 name.previousElementSibling.append(nameError);
 
 function validateName() {
@@ -163,8 +198,13 @@ name.addEventListener("input", (event) => {
   validateName();
 });
 
-const email = document.getElementById("mail");
-const emailError = createErrorElement();
+
+/**
+Checks if the user has entered an email address, if they haven't a message will be displayed asking for one.
+Once a user begins typing the validation will check that the email is in the correct format, if not a different message is displayed.
+Email validation - Must only contain letters, start with letters, have an @ followed by more letters, then have a . followed by 3 letters.
+If the validation fails the function will return false.
+**/
 email.previousElementSibling.append(emailError);
 
 function validateEmail() {
@@ -186,7 +226,10 @@ email.addEventListener("input", (event) => {
   validateEmail();
 });
 
-const activitiesError = createErrorElement();
+/**
+Checks if the user has selected at least one activity, if they haven't an error message is dispayed.
+If no activities have been selected the function will return false.
+**/
 activitiesError.innerHTML = "*Please select at least one activity";
 activities.appendChild(activitiesError);
 
@@ -204,8 +247,11 @@ activities.addEventListener("click", (event) => {
   validateActivities();
 })
 
-const cardNumber = document.getElementById("cc-num");
-const cardError = createErrorElement();
+/**
+As the user types their card number the validator assesses if it's between 13-16 digits.
+If it's not an error message is displayed.
+If the validation fails the function will return false.
+**/
 cardError.innerHTML = "*Invalid card number";
 cardNumber.parentNode.appendChild(cardError);
 
@@ -223,8 +269,11 @@ cardNumber.addEventListener("input", () => {
   validateCardNumber();
 });
 
-const zip = document.getElementById("zip");
-const zipError = createErrorElement();
+/**
+As the user types their zip number the validator assesses if it's 5 digits.
+If it's not an error message is displayed.
+If the validation fails the function will return false.
+**/
 zipError.innerHTML = "*Invalid zip";
 zip.parentNode.appendChild(zipError);
 
@@ -241,8 +290,11 @@ zip.addEventListener("input", () => {
   validateZip();
 })
 
-const cvvNumber = document.getElementById("cvv");
-const cvvError = createErrorElement();
+/**
+As the user types their CVV number the validator assesses if it's 3 digits.
+If it's not an error message is displayed.
+If the validation fails the function will return false.
+**/
 cvvError.innerHTML = "*Invalid CVV";
 cvv.parentNode.appendChild(cvvError);
 
@@ -260,6 +312,11 @@ cvvNumber.addEventListener("input", () => {
   validateCvv();
 })
 
+/**
+Assesses if any of the validator functions return false.
+If they do all the validator functions will be called which means any incorrectly filled in fields will display error messages.
+The function then returns false.
+**/
 function masterValidator() {
   if (validateName() === false || validateEmail() === false || validateActivities() === false || validateCardNumber() === false || validateZip() === false || validateCvv() === false) {
     validateName();
@@ -274,9 +331,11 @@ function masterValidator() {
   }
 }
 
-
-submitButton = document.getElementsByTagName("button")[0];
-
+/**
+When the user submits the form the master valadator function is called.
+If it returns false then preventDefault is called to stop the form from submitted.
+Any fields which failed validation will display an error message for the user.
+**/
 submitButton.addEventListener("click", (event) => {
   if(masterValidator() === false) {
     event.preventDefault();
