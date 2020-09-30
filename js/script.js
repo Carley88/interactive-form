@@ -178,19 +178,9 @@ function validateName() {
     nameError.style.display = "none";
     return true;
   } else {
-    nameError.style.display = "";
-    return false;
-  }
-}
-
-function validateName() {
-  if (name.value.length === 0) {
     nameError.innerHTML = "*Please enter your name";
     nameError.style.display = "";
     return false;
-  } else if (/^[a-z]+$/.test === false) {
-    nameError.innerHTML = "*Please enter your name";
-    nameError.style.display = "";
   }
 }
 
