@@ -137,7 +137,7 @@ creditCard.style.display = "";
 payPal.style.display = "";
 bitcoin.style.display = "none";
 
-document.querySelector("[value='select method']").style.display = "none";
+document.querySelector("[value='select method']").disabled = true;
 
 payment.addEventListener('change', (event) => {
   const paymentType = event.target.value;
