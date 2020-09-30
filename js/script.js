@@ -198,15 +198,15 @@ If the validation fails the function will return false.
 email.previousElementSibling.append(emailError);
 
 function validateEmail() {
-  if(/^[^@]+@[^@.]+\.[a-z]{3}$/i.test(email.value) === false && email.value.length > 0) {
+  if(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value) === false && email.value.length > 0) {
     emailError.innerHTML = "*Please enter a valid email address";
     emailError.style.display = "";
     return false;
-  } else if (email.value.length === 0 && /^[^@]+@[^@.]+\.[a-z]{3}$/i.test(email.value) === false) {
+  } else if (email.value.length === 0 && /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value) === false) {
     emailError.innerHTML = "*Please enter your email address";
     emailError.style.display = "";
     return false;
-  } else if (email.value && /^[^@]+@[^@.]+\.[a-z]{3}$/i.test(email.value) === true) {
+  } else if (email.value && /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value) === true) {
     emailError.style.display = "none";
     return true;
   }
