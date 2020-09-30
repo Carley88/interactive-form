@@ -41,10 +41,6 @@ jobRole.addEventListener('change', (event) => {
   }
 })
 
-for (let i = 0; i < colorOptions.length; i++) {
-  colorOptions[i].className = "is-hidden";
-}
-
 /**
 Hides the t-shirt color options until a design is selected.
 Once a design is selected only colors of the selected themes will be available to select.
