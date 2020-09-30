@@ -92,6 +92,8 @@ design.addEventListener('change', (event) => {
         colorOptions[i].className = "is-hidden";
       }
     }
+  } else {
+    shirtDiv.style.display = "none";
   }
 });
 
@@ -135,7 +137,7 @@ creditCard.style.display = "";
 payPal.style.display = "";
 bitcoin.style.display = "none";
 
-document.querySelector("[value='select method']").style.display = "none";
+document.querySelector("[value='select method']").disabled = true;
 
 payment.addEventListener('change', (event) => {
   const paymentType = event.target.value;
@@ -176,19 +178,9 @@ function validateName() {
     nameError.style.display = "none";
     return true;
   } else {
-    nameError.style.display = "";
-    return false;
-  }
-}
-
-function validateName() {
-  if (name.value.length === 0) {
     nameError.innerHTML = "*Please enter your name";
     nameError.style.display = "";
     return false;
-  } else if (/^[a-z]+$/.test === false) {
-    nameError.innerHTML = "*Please enter your name";
-    nameError.style.display = "";
   }
 }
 
@@ -206,15 +198,15 @@ If the validation fails the function will return false.
 email.previousElementSibling.append(emailError);
 
 function validateEmail() {
-  if(/^[^@]+@[^@.]+\.[a-z]{3}$/i.test(email.value) === false && email.value.length > 0) {
+  if(/^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value) === false && email.value.length > 0) {
     emailError.innerHTML = "*Please enter a valid email address";
     emailError.style.display = "";
     return false;
-  } else if (email.value.length === 0 && /^[^@]+@[^@.]+\.[a-z]{3}$/i.test(email.value) === false) {
+  } else if (email.value.length === 0 && /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value) === false) {
     emailError.innerHTML = "*Please enter your email address";
     emailError.style.display = "";
     return false;
-  } else if (email.value && /^[^@]+@[^@.]+\.[a-z]{3}$/i.test(email.value) === true) {
+  } else if (email.value && /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.value) === true) {
     emailError.style.display = "none";
     return true;
   }
