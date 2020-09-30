@@ -92,6 +92,8 @@ design.addEventListener('change', (event) => {
         colorOptions[i].className = "is-hidden";
       }
     }
+  } else {
+    shirtDiv.style.display = "none";
   }
 });
 
