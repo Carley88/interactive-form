@@ -240,6 +240,7 @@ activities.addEventListener("click", (event) => {
 })
 
 /**
+If the credit card option is selected:
 As the user types their card number the validator assesses if it's between 13-16 digits.
 If it's not an error message is displayed.
 If the validation fails the function will return false.
@@ -248,7 +249,7 @@ cardError.innerHTML = "*Invalid card number";
 cardNumber.parentNode.appendChild(cardError);
 
 function validateCardNumber() {
-  if (/^\d{13,16}$/.test(cardNumber.value) === true) {
+  if (/^\d{13,16}$/.test(cardNumber.value) === true || payment.value !== "credit card") {
     cardError.style.display = "none";
     return true;
   } else {
@@ -262,6 +263,7 @@ cardNumber.addEventListener("input", () => {
 });
 
 /**
+If the credit card option is selected:
 As the user types their zip number the validator assesses if it's 5 digits.
 If it's not an error message is displayed.
 If the validation fails the function will return false.
@@ -270,7 +272,7 @@ zipError.innerHTML = "*Invalid zip";
 zip.parentNode.appendChild(zipError);
 
 function validateZip() {
-  if (/^\d{5}$/.test(zip.value) === true) {
+  if (/^\d{5}$/.test(zip.value) === true || payment.value !== "credit card") {
     zipError.style.display = "none";
     return true;
   } else {
@@ -283,6 +285,7 @@ zip.addEventListener("input", () => {
 })
 
 /**
+If the credit card option is selected:
 As the user types their CVV number the validator assesses if it's 3 digits.
 If it's not an error message is displayed.
 If the validation fails the function will return false.
@@ -291,7 +294,7 @@ cvvError.innerHTML = "*Invalid CVV";
 cvv.parentNode.appendChild(cvvError);
 
 function validateCvv() {
-  if (/^\d{3}$/.test(cvv.value) === true){
+  if (/^\d{3}$/.test(cvv.value) === true || payment.value !== "credit card"){
     cvvError.style.display = "none";
     return true;
   } else {
