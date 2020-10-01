@@ -135,9 +135,10 @@ This will change if the user selects a different payment method.
 The select payment method isn't available for selection when the user drops down.
 **/
 creditCard.style.display = "";
-payPal.style.display = "";
+payPal.style.display = "none";
 bitcoin.style.display = "none";
 
+document.querySelector("[value='credit card']").selected = true;
 document.querySelector("[value='select method']").disabled = true;
 
 payment.addEventListener('change', (event) => {
